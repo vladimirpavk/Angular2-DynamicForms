@@ -1,4 +1,5 @@
 /node_modules
 /typings
-**/client/app/js/**/*.js
-**/client/app/js/**/*.js.map
+/client/app/js
+/server/js
+/.vscode
