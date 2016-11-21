@@ -1,13 +1,18 @@
 <h1>Dynamic Forms</h1>
 <form [formGroup]="registerForm" (ngSubmit)="clickSubmit()">
-
+    {{firstnameControl.errors | json}}
     <fieldset formGroupName="init">
 
         <div class="form-group">
         <label>Firstname:</label>
         <input type="text" formControlName="firstname">
-        {{registerForm.controls.init.controls.firstname.errors}}
-        <label [hidden]="!registerForm.controls.init.controls.firstname.invalid">Firstname must be between 6 and 15 characters</label>
+        <div style="display: block">
+            <label [hidden]="!firstnameControl.invalid">Firstname must be between 6 and 15 characters</label>
+            <label [hidden]="!firstnameControl.hasError('required')"> The field is required</label>
+            <label [hidden]="!firstnameControl.hasError('minlength')">Min length must be 6 chrs.</label>
+            <label [hidden]="!firstnameControl.hasError('maxlength')">Max length must be 15 chrs.</label>
+            <label [hidden]="!firstnameControl.hasError('nekagreska')">Neka greska</label>
+        </div>       
         </div>
 
         <div class="form-group">
@@ -27,7 +32,7 @@
 
         <div class="form-group">
             <label>Username:</label>
-            <input type="text" formControlName="username">
+            <input type="text" formControlName="username">         
         </div>
 
         <div class="form-group">
@@ -43,4 +48,6 @@
     </fieldset>
 
     <button type="submit">Submit</button>
+
+    <button (click)="button1Click()">Promeni vrednosti</button>
 </form>
