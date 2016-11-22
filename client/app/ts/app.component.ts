@@ -27,46 +27,25 @@ export class AppComponent {
   }
 
   public ngOnInit(){
-      this._BuildForm();
       this.user=new User("Vladimir", "Pavkovic", "Bor", "vladimirpavk", "observer", "observer");
+      this._BuildForm();
+ 
   }
 
   _BuildForm(){
 
-    //prepravi ovo bez FormBuildera, može biti jednostavnije
-      /*this.registerForm = this.formBuilder.group({
-      'init': this.formBuilder.group({
-        'firstname': ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(15), this.customFirstnameValidator])],
-        'lastname': '',
-        'city': ''
-      }),
-      'cred': this.formBuilder.group({
-        'username': '',
-        'password': 'init',
-        'password2': ['', this.customPassValidator]
-      })
-    });   
-
-    this.firstnameControl=<FormControl>(<FormGroup>this.registerForm.controls['init']).controls['firstname'];
-    this.lastnameControl=<FormControl>(<FormGroup>this.registerForm.controls['init']).controls['lastname'];
-    this.cityControl=<FormControl>(<FormGroup>this.registerForm.controls['init']).controls['city'];
-    this.usernameControl=<FormControl>(<FormGroup>this.registerForm.controls['cred']).controls['username'];
-    this.passwordControl=<FormControl>(<FormGroup>this.registerForm.controls['cred']).controls['password'];
-    this.password2Control=<FormControl>(<FormGroup>this.registerForm.controls['cred']).controls['password2'];
-    */
-  
-    this.firstnameControl=new FormControl('', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(15), this.customFirstnameValidator]));
-    this.lastnameControl=new FormControl();
-    this.cityControl=new FormControl();
+    this.firstnameControl=new FormControl(this.user.firstname, Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(15), this.customFirstnameValidator]));
+    this.lastnameControl=new FormControl(this.user.lastname);
+    this.cityControl=new FormControl(this.user.city);
     this.initControl=new FormGroup({
       "firstname": this.firstnameControl,
       "lastname": this.lastnameControl,
       "city": this.cityControl
     });
     
-    this.usernameControl=new FormControl();
-    this.passwordControl=new FormControl();
-    this.password2Control=new FormControl();
+    this.usernameControl=new FormControl(this.user.username);
+    this.passwordControl=new FormControl(this.user.password);
+    this.password2Control=new FormControl(this.user.password2);
     this.credcontrol=new FormGroup({
       "username": this.usernameControl,
       "password": this.passwordControl,
@@ -78,11 +57,32 @@ export class AppComponent {
       "cred": this.credcontrol
     });
 
+    this.registerForm.valueChanges.subscribe((value)=>{
+      this.user.firstname=value['init']['firstname'];
+      this.user.lastname=value['init']['lastname'];
+      this.user.city=value['init']['city'];
+      this.user.username=value['cred']['username'];
+      this.user.password=value['cred']['password'];
+      this.user.password2=value['cred']['password2'];
+      
+      console.log(JSON.stringify(this.user));         
+    });    
 
     this.firstnameControl.statusChanges.subscribe((value)=>{
       console.log(value);  
       }
     );  
+  }
+
+  //call when model changes - > view
+  public changeView(model: User){
+    this.usernameControl.setValue(model.firstname);
+    this.lastnameControl.setValue(model.lastname);
+    this.cityControl.setValue(model.city);
+
+    this.usernameControl.setValue(model.username);
+    this.passwordControl.setValue(model.password);
+    this.password2Control.setValue(model.password2);
   }
 
   public clickSubmit(){
