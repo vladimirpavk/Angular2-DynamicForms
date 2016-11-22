@@ -5,7 +5,7 @@
 
         <div class="form-group">
         <label>Firstname:</label>
-        <input type="text" formControlName="firstname">
+        <input type="text" formControlName="firstname" [(ngModel)]="user.firstname">
         <div style="display: block">
             <label [hidden]="!firstnameControl.invalid">Firstname must be between 6 and 15 characters</label>
             <label [hidden]="!firstnameControl.hasError('required')"> The field is required</label>
@@ -17,12 +17,12 @@
 
         <div class="form-group">
         <label>Lastname:</label>
-        <input type="text" formControlName="lastname">
+        <input type="text" formControlName="lastname" [(ngModel)]="user.lastname">
         </div>
 
         <div class="form-group">
         <label>City:</label>
-        <input type="text" formControlName="city">
+        <input type="text" formControlName="city" [(ngModel)]="user.city">
         </div>
     
     </fieldset>
@@ -32,17 +32,17 @@
 
         <div class="form-group">
             <label>Username:</label>
-            <input type="text" formControlName="username">         
+            <input type="text" formControlName="username" [(ngModel)]="user.username">         
         </div>
 
         <div class="form-group">
             <label>Password:</label>
-            <input type="text" formControlName="password">
+            <input type="text" formControlName="password" [(ngModel)]="user.password">
         </div>
 
         <div class="form-group">
             <label>Re-type password:</label>
-            <input type="text" formControlName="password2">
+            <input type="text" formControlName="password2" [(ngModel)]="user.password2">
         </div>
 
     </fieldset>
