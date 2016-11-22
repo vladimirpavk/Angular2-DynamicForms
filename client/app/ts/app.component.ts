@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { User } from './user';
+import { EqualValidator } from './confirm-password-validator';
 
 @Component({
   selector: 'my-app',
