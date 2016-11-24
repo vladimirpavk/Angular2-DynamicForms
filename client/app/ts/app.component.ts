@@ -66,23 +66,19 @@ export class AppComponent {
       this.user.password2=value['cred']['password2'];
       
       console.log(JSON.stringify(this.user));         
-    });    
-
-    this.firstnameControl.statusChanges.subscribe((value)=>{
-      console.log(value);  
-      }
-    );  
+    });       
   }
 
   //call when model changes - > view
-  public changeView(model: User){
-    this.usernameControl.setValue(model.firstname);
-    this.lastnameControl.setValue(model.lastname);
-    this.cityControl.setValue(model.city);
+ // public changeView(model: User){
+   public changeView(){
+    this.firstnameControl.setValue(this.user.firstname, { onlySelf: true});
+    this.lastnameControl.setValue(this.user.lastname, { onlySelf: true});
+    this.cityControl.setValue(this.user.city, { onlySelf: true});
 
-    this.usernameControl.setValue(model.username);
-    this.passwordControl.setValue(model.password);
-    this.password2Control.setValue(model.password2);
+    this.usernameControl.setValue(this.user.username, { onlySelf: true});
+    this.passwordControl.setValue(this.user.password, { onlySelf: true});
+    this.password2Control.setValue(this.user.password2, { onlySelf: true});
   }
 
   public clickSubmit(){
@@ -90,11 +86,13 @@ export class AppComponent {
   }
 
   public button1Click():void{
-    console.log("Promeni vrednosti");
+    /*console.log("Promeni vrednosti");
     this.firstnameControl.setValue("vladimirko");
-    console.log(JSON.stringify(this.user));
+    console.log(JSON.stringify(this.user));*/
 
     this.user=new User("natasa", "pavkovic", "bor", "natasap", "pile123", "pile123");
+    console.log(JSON.stringify(this.user));
+    this.changeView();
   }
 
   public customFirstnameValidator(control: FormControl):{[s:string]: boolean}{   

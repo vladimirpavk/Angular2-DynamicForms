@@ -1,4 +1,37 @@
-# ExpressTSAngular2
+# Dynamic forms - no_ngModel branch
+Two way databinding from model to view and vice-vera without you of ngModel directive. You must maintain changes on you own.
+
+In this example model is class User. Template form is bind through **formControlName** and **formGroupName** and this is used
+as an interface for changing the value to a form. 
+
+You use changeView() method when you make changes to the model to apply this changes to a view
+```
+ public changeView(){
+    this.firstnameControl.setValue(this.user.firstname, { onlySelf: true});
+    this.lastnameControl.setValue(this.user.lastname, { onlySelf: true});
+    this.cityControl.setValue(this.user.city, { onlySelf: true});
+
+    this.usernameControl.setValue(this.user.username, { onlySelf: true});
+    this.passwordControl.setValue(this.user.password, { onlySelf: true});
+    this.password2Control.setValue(this.user.password2, { onlySelf: true});
+  }
+```
+
+When a change in the view is made then the model is synchronized becoused we are subscribed to a valueChanges event, or 
+we can you ngOnViewChange
+
+```
+ this.registerForm.valueChanges.subscribe((value)=>{
+      this.user.firstname=value['init']['firstname'];
+      this.user.lastname=value['init']['lastname'];
+      this.user.city=value['init']['city'];
+      this.user.username=value['cred']['username'];
+      this.user.password=value['cred']['password'];
+      this.user.password2=value['cred']['password2'];                
+    });       
+```
+
+###Tools
 Node, Express, TypeScript, Gulp, BrowserSync, Angular2 application skeleton.
 
 Provided for developing **Angular2** applications using **Typescript** served over **node-express** server.
