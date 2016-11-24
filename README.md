@@ -1,4 +1,21 @@
-# ExpressTSAngular2
+###Dynamic forms - two way binding with ngModel with custom attribute validator
+
+Two way databinding from model to view and vice-vera with use of ngModel directive.
+
+In this example model is class User. Template form is bind through formControlName and formGroupName and this is used as an interface for changing the value to a form.
+When changes to the value of a specific FormControl is made these changes are applied to the template form. This is one-way binding
+from model to a view. 
+
+When changes to the view happen changes to the model are auto applied because of the [(ngMode)] directive.
+
+###Custom validator
+Custom validator is used in the template with the following syntax
+```
+  <input type="text" formControlName="password2" validateEqual="password">
+```
+Implementation of this validator is an adjusted example from scotch.io.
+
+# Tools
 Node, Express, TypeScript, Gulp, BrowserSync, Angular2 application skeleton.
 
 Provided for developing **Angular2** applications using **Typescript** served over **node-express** server.
