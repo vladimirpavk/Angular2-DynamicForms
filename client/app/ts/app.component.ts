@@ -16,7 +16,7 @@ export class AppComponent {
   public firstnameControl: FormControl;
   public lastnameControl: FormControl;
   public cityControl: FormControl;
-  public credcontrol: FormGroup;
+  public credControl: FormGroup;
   public usernameControl: FormControl;
   public passwordControl: FormControl;
   public password2Control: FormControl;
@@ -68,7 +68,7 @@ export class AppComponent {
     this.usernameControl=new FormControl();
     this.passwordControl=new FormControl();
     this.password2Control=new FormControl();
-    this.credcontrol=new FormGroup({
+    this.credControl=new FormGroup({
       "username": this.usernameControl,
       "password": this.passwordControl,
       "password2": this.password2Control
@@ -76,7 +76,7 @@ export class AppComponent {
 
     this.registerForm=new FormGroup({
       "init": this.initControl,
-      "cred": this.credcontrol
+      "cred": this.credControl
     });
 
 

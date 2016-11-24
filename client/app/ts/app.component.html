@@ -42,8 +42,8 @@
 
         <div class="form-group">
             <label>Re-type password:</label>
-            <input type="text" formControlName="password2" validateEqual="password" [(ngModel)]="user.password2" #password2>
-            {{ password2.errors | json }}
+            <input type="text" formControlName="password2" validateEqual="password">
+            {{ password2Control.errors | json }}            
         </div>
 
     </fieldset>
