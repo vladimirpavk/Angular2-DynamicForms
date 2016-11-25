@@ -2,11 +2,12 @@
 
 Two way databinding from model to view and vice-vera with use of ngModel directive.
 
-In this example model is class User. Template form is bind through formControlName and formGroupName and this is used as an interface for changing the value to a form.
-When changes to the value of a specific FormControl is made these changes are applied to the template form. This is one-way binding
+In this example model is **class User**. Interface for changing values to a form, when model changes, 
+in the template is through **FormControl** and **FormGroup** classes. 
+When you change value of a specific FormControl instance this change is applied to the template form. This is one-way binding
 from model to a view. 
 
-When changes to the view happen changes to the model are auto applied because of the [(ngMode)] directive.
+When you change data in the form in template, this change is applied to the model with [(ngModel)] directive so you do not have to do it manually.
 
 # Custom validator
 Custom validator is used in the template with the following syntax
